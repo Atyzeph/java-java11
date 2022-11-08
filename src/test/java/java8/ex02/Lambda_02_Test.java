@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -37,7 +38,15 @@ public class Lambda_02_Test {
 
         // TODO transformer la liste de personnes en liste de comptes
         // TODO tous les objets comptes ont un solde à 100 par défaut
-        List<Account> result = map(personList, null);
+        List<Account> result = personList.stream().map(e -> {
+        	Person person = new Person(e.getFirstname(), e.getLastname(), e.getAge(), e.getPassword());
+        	Account obj = new Account(e, null);
+        	obj.setBalance(100);
+        	obj.setOwner(person);
+        	
+        	return obj;
+        	
+        }).collect(Collectors.toList());
 
         assert result.size() == personList.size();
         for (Account account : result) {
