@@ -44,7 +44,11 @@ public class Optional_01_Test {
 
         // TODO rechercher dans la liste ci-dessus la 1ère personne ayant 75 ans
         // TODO utiliser la méthode "findFirst"
-        Optional<Person> optPerson = null;
+        Optional<Person> optPerson = persons.stream().filter(e -> e.getAge() > 75).findFirst();
+        
+        // Optional<Person> optPerson = optPerson.ofNullable(persons.get(age)).map(list -> list.stream());
+        
+        assertThat(optPerson.isPresent(), is(false));
         assertThat(optPerson.isPresent(), is(false));
         
         // TODO si la personne n'existe pas, jeter une exception NotPresentException
