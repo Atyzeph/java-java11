@@ -46,13 +46,11 @@ public class Optional_01_Test {
         // TODO utiliser la méthode "findFirst"
         Optional<Person> optPerson = persons.stream().filter(e -> e.getAge() > 75).findFirst();
         
-        // Optional<Person> optPerson = optPerson.ofNullable(persons.get(age)).map(list -> list.stream());
-        
         assertThat(optPerson.isPresent(), is(false));
         assertThat(optPerson.isPresent(), is(false));
         
         // TODO si la personne n'existe pas, jeter une exception NotPresentException
         // TODO utiliser la méthode "orElseThrow"
-
+        optPerson.orElseThrow(() -> new NotPresentException());
     }
 }
